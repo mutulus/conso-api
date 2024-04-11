@@ -57,7 +57,7 @@ class PersonneController extends AbstractController
         $form->handleRequest($request->getCurrentRequest());
         if ($form->isSubmitted() &&  $form->isValid()){
             $user=$form->getData();
-            $token=$this->apiLogin->SeLog($user->getMail(),$user->getPass());
+            $token=$this->apiLogin->SeLog($user->getEmail(),$user->getPass());
             $request->getSession()->set('token',$token["token"]);
             $this->addFlash("success", "Vous avez bien été connecté, votre token est ". $request->getSession()->get('token'));
             return $this->redirectToRoute("app_accueil"); // Redirection vers la route désirée
